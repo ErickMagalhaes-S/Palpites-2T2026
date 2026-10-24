@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2f5f93">
+<meta name="description" content="Bolão do segundo turno com registro persistente, votos válidos e criptografia temporal.">
+<title>Bolão do Segundo Turno — Votos Válidos</title>
+<style>
+:root{
+  --ink:#161616;
+  --bg:#f3f1ec;
+  --paper:#fbfaf7;
+  --card:#fffdf9;
+  --line:#ddd7cf;
+  --muted:#6b6b6b;
+  --blue:#2f6ea5;
+  --blue-soft:#e8f0f8;
+  --red:#c84c3f;
+  --red-soft:#f9e9e6;
+  --gold:#d89a23;
+  --good:#1f7a46;
+  --bad:#b42318;
+  --warn:#8a6400;
+  --shadow:0 10px 30px rgba(20,20,20,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:var(--blue)}
+.topbar{background:#f8f6f2;border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1120px;margin:auto;padding:18px 18px;display:flex;justify-content:space-between;gap:18px;align-items:center}
+.brand{line-height:1}.brand .title{font-family:Georgia, 'Times New Roman', serif;font-size:2rem;letter-spacing:.02em}.brand .sub{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.topnav{display:flex;gap:20px;flex-wrap:wrap;font-size:.98rem}.topnav a{text-decoration:none;color:var(--ink)}
+.wrap{max-width:1120px;margin:auto;padding:18px}
+.hero{padding:26px 0 6px}
+.crumb{font-size:.95rem;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.05;margin:0 0 12px;color:var(--ink);letter-spacing:-.04em}
+.hero p{max-width:980px;font-size:1.05rem;line-height:1.6;margin:0 0 18px;color:#383838}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);padding:10px;border-radius:14px;box-shadow:var(--shadow)}
+.tab{padding:12px 18px;border:1px solid var(--line);border-radius:10px;background:#fff;text-transform:uppercase;font-size:.9rem;letter-spacing:.03em;font-weight:700}
+.tab.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:18px 0;box-shadow:var(--shadow)}
+.hero-alert{background:linear-gradient(135deg,#fff6d9,#ffe7a1 55%,#ffd36f);border:2px solid var(--gold)}
+.hero-badge{display:inline-block;background:#7f2121;color:#fff;padding:6px 10px;border-radius:999px;font-size:.82rem;font-weight:850;letter-spacing:.04em;margin-bottom:12px}
+.mega{font-size:clamp(1.65rem,4vw,2.7rem);line-height:1.04;font-weight:900;letter-spacing:-.04em;margin:0 0 10px}
+.submega{font-size:1.03rem;line-height:1.62;margin:0}.mini{margin-top:12px;color:#6f4d00;font-size:.94rem}
+.summary-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;align-items:stretch}
+.info-panel{display:flex;flex-direction:column;justify-content:center}
+.info-kicker{font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.info-title{font-size:2rem;line-height:1.08;letter-spacing:-.03em;margin:0 0 14px}
+.info-text{font-size:1rem;line-height:1.65;margin:0;color:#424242}
+.sim-card{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;min-height:250px}
+.sim-col{padding:10px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sim-col.blue{border-right:1px solid var(--line)}
+.big-number{font-size:clamp(4rem,8vw,6rem);line-height:.95;font-weight:300;margin:0}
+.big-number.blue{color:var(--blue)}
+.big-number.red{color:var(--red)}
+.cand-name{font-size:1.1rem;font-weight:800;margin-top:8px}
+.cand-name.blue{color:var(--blue)}
+.cand-name.red{color:var(--red)}
+.card h2{font-size:1.35rem;line-height:1.2;margin:0 0 14px;color:var(--ink);letter-spacing:-.03em}
+.rules-card{background:linear-gradient(180deg,#fbfcfe,#f6f8fb)}
+.rules-list{margin:0;padding-left:1.15rem;line-height:1.7}.rules-list li+li{margin-top:8px}
+.rules-note{margin-top:14px;background:#eff5fb;border:1px solid #dbe6f0;border-radius:14px;padding:14px}
+.warning{border-left:4px solid var(--warn);padding:11px 13px;background:#fff7db;border-radius:8px}
+.good{color:var(--good);font-weight:850}.bad{color:var(--bad);font-weight:850}.hidden{display:none!important}
+.locked{background:#f5f2ec;border:1px dashed #bdb3a7;padding:14px;border-radius:12px;color:#6e675f}
+.hint{color:var(--muted);font-size:.91rem;line-height:1.55}
+.urna-shell{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;background:#d7d2cb;border:1px solid #bdb6ad;border-radius:24px;padding:20px}
+.urna-screen{background:#fbfaf5;border:8px solid #d4d0c8;border-radius:14px;padding:18px;box-shadow:inset 0 0 0 1px #bdb6ad;min-height:460px}
+.urna-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.urna-title{font-size:1.3rem;font-weight:900;letter-spacing:-.02em}
+.urna-subtitle{font-size:.92rem;color:var(--muted);line-height:1.45}
+.urna-flag{background:#efeee9;border:1px solid var(--line);padding:8px 10px;border-radius:10px;font-size:.82rem;font-weight:800;text-transform:uppercase;white-space:nowrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:800;margin-bottom:7px;color:#262626}
+input,textarea,button{font:inherit}
+input,textarea{width:100%;padding:13px 14px;border:1px solid #c6c0b8;border-radius:12px;color:var(--ink);background:#fff}
+input:focus,textarea:focus{outline:3px solid #dae6f2;border-color:#7897b4}
+.name-box input{font-size:1.02rem}
+.vote-box{padding:14px;border-radius:16px;border:1px solid var(--line)}
+.vote-box.blue{background:var(--blue-soft);border-color:#c8d9ea}
+.vote-box.red{background:var(--red-soft);border-color:#eccdc8}
+.vote-box .vote-kicker{text-transform:uppercase;font-size:.77rem;letter-spacing:.08em;margin-bottom:6px}
+.vote-box.blue .vote-kicker,.vote-box.blue label{color:var(--blue)}
+.vote-box.red .vote-kicker,.vote-box.red label{color:var(--red)}
+.calc{background:#f0ede8;border:1px solid #ddd5ca;border-radius:14px;padding:14px;font-size:1rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+button{border:0;border-radius:12px;padding:13px 16px;font-weight:800;cursor:pointer}
+.primary{background:var(--blue);color:#fff}.secondary{background:#ece8e2;color:var(--ink)}.wa{background:var(--good);color:#fff}
+button:disabled{opacity:.45;cursor:not-allowed}
+.big-record{font-size:1rem;line-height:1.6;background:#eef5fb;border:1px solid #dbe6f0;border-radius:14px;padding:15px;margin:0 0 16px}
+.urna-pad{background:#cfcac3;border-radius:16px;padding:16px;border:1px solid #b1aaa1;display:flex;flex-direction:column;justify-content:space-between}
+.pad-brand{font-weight:900;font-size:1.1rem;letter-spacing:.03em;margin-bottom:8px}
+.pad-mini{font-size:.86rem;color:#555;margin-bottom:14px}
+.pad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.pad-key{background:#2c2c2c;color:#fff;border-radius:8px;padding:12px 0;text-align:center;font-weight:800;box-shadow:inset 0 -2px 0 rgba(255,255,255,.07),0 2px 0 rgba(0,0,0,.16)}
+.pad-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pad-action{padding:9px 6px;border-radius:8px;text-align:center;font-size:.72rem;font-weight:900;color:#111;text-transform:uppercase}
+.pad-action.white{background:#fafafa;border:1px solid #ddd}.pad-action.orange{background:#f4a742}.pad-action.green{background:#44a35d;color:#fff}
+.receipt{border:2px solid #cfc8be;border-radius:16px;padding:17px;background:#fff}
+.hash{font:.82rem ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;background:#f2f5f9;padding:10px;border-radius:10px;border:1px solid #e0e7f0}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{text-align:left;border-bottom:1px solid #e0dacf;padding:10px 8px;vertical-align:top}
+th{font-size:.84rem;color:#666;text-transform:uppercase;letter-spacing:.05em}
+.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.78rem;overflow-wrap:anywhere}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;background:#eef2f7;font-size:.8rem;font-weight:750}
+footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
+@media(max-width:980px){.summary-grid,.urna-shell{grid-template-columns:1fr}.sim-card{min-height:auto}.urna-screen{min-height:auto}}
+@media(max-width:700px){.topbar-inner{flex-direction:column;align-items:flex-start}.grid{grid-template-columns:1fr}.wrap{padding:14px}.card{padding:18px}.tabs{padding:8px}.tab{padding:10px 14px}.brand .title{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="title">Bolão Político</div>
+      <div class="sub">2º turno · consultoria etílica e eleitoral</div>
+    </div>
+    <nav class="topnav" aria-label="Navegação principal">
+      <a href="#regras">Regras</a>
+      <a href="#registro">Registro</a>
+      <a href="#registros">Registros</a>
+      <a href="#resultados">Resultados</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="crumb">Início › Modelo Presidencial › Segundo turno</div>
+    <h1>Modelo Presidencial 2026 — 2º turno</h1>
+    <p>Palpite em <strong>votos válidos</strong>, com <strong>duas casas decimais</strong> e soma obrigatória de <strong>100,00%</strong>. O registro fica salvo no servidor no momento da confirmação e os números ficam protegidos até a abertura oficial.</p>
+    <div class="tabs" role="tablist" aria-label="Áreas">
+      <div class="tab active">Presidente</div>
+      <div class="tab">Regras</div>
+      <div class="tab">Registros</div>
+      <div class="tab">Resultados</div>
+    </div>
+  </section>
+
+  <section class="card hero-alert">
+    <div class="hero-badge">🚨 COMUNICADO OFICIAL 🚨</div>
+    <p class="mega">🍷 PAGUE O VINHO DE ERICK, consagrado ganhador da aposta do 1º turno.</p>
+    <p class="submega"><strong>Esta plataforma registra palpites para o segundo turno</strong>, mas também cumpre dever cívico superior: lembrar que <strong>dívidas líquidas, certas e vínicas</strong> devem ser honradas sem choro, sem drama e, se possível, com boa safra.</p>
+    <p class="mini">Versão séria para fins protocolares: <strong>Erick venceu a aposta do primeiro turno</strong>. Os perdedores devem reconhecer o resultado das urnas e do vinho.</p>
+  </section>
+
+  <section class="card summary-grid" aria-label="Resumo do modelo">
+    <div class="info-panel">
+      <div class="info-kicker">Palpite do bolão</div>
+      <h2 class="info-title">Votos válidos, registro persistente e abertura programada.</h2>
+      <p class="info-text">Seu palpite não fica só no navegador: ele é <strong>criptografado</strong>, enviado ao servidor e só aparece como <strong>registro confirmado</strong> depois que o sistema grava e relê o conteúdo do banco. Antes da abertura, o que fica visível é apenas a existência do registro, não os números em claro.</p>
+    </div>
+    <div class="card sim-card" style="margin:0;background:#fff">
+      <div class="sim-col blue">
+        <div class="big-number blue">2</div>
+        <div class="cand-name blue">casas decimais</div>
+      </div>
+      <div class="sim-col">
+        <div class="big-number red">100</div>
+        <div class="cand-name red">soma obrigatória</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card rules-card" id="regras">
+    <h2>📜 Regras do bolão</h2>
+    <ol class="rules-list">
+      <li><strong>Prazo final para registrar:</strong> até <strong>sábado, 24/10/2026, às 23:59:59</strong>, horário de Brasília.</li>
+      <li><strong>O palpite é em votos válidos.</strong> Você deve informar os percentuais de <strong>Flávio</strong> e <strong>Lula</strong>, sempre com <strong>duas casas decimais</strong>.</li>
+      <li><strong>A soma precisa dar exatamente 100,00%.</strong> Se não der, o sistema não confirma o registro.</li>
+      <li><strong>Um registro por nome.</strong> Depois de gravado no servidor, o site público não oferece edição nem substituição.</li>
+      <li><strong>O registro fica salvo no servidor.</strong> Não é só um recibo: a confirmação só aparece depois que o banco grava e a página relê o registro.</li>
+      <li><strong>Antes de 25/10/2026 às 21:30</strong>, os números permanecem criptografados e não aparecem em claro.</li>
+      <li><strong>Às 21:30 de 25/10/2026</strong>, os resultados se tornam descriptografáveis e públicos para conferência.</li>
+    </ol>
+    <div class="rules-note"><strong>Resumo:</strong> registrou = ficou salvo; salvou = pode conferir; revelou = só no horário certo.</div>
+  </section>
+
+  <section class="card" id="registro">
+    <h2>🗳️ Registrar palpite</h2>
+    <p class="hint">Layout inspirado em urna: preencha o seu <strong>palpite em votos válidos</strong>. O sistema exige <strong>duas casas decimais</strong> e soma total de <strong>100,00%</strong>.</p>
+    <div class="big-record"><strong>✅ Importante:</strong> se aparecer <strong>“Registro confirmado”</strong>, isso significa que o sistema <strong>criptografou o palpite</strong>, <strong>gravou no servidor</strong> e <strong>consultou o registro de volta</strong>. Seu palpite efetivamente ficou registrado.</div>
+
+    <div id="configError" class="warning hidden"></div>
+    <div id="registerLock" class="locked hidden"></div>
+
+    <div id="registerForm">
+      <div class="urna-shell">
+        <div class="urna-screen">
+          <div class="urna-head">
+            <div>
+              <div class="urna-title">Seu palpite</div>
+              <div class="urna-subtitle">Informe os votos válidos para o 2º turno. O total deve somar 100,00%.</div>
+            </div>
+            <div class="urna-flag">Votos válidos</div>
+          </div>
+
+          <div class="grid">
+            <div class="full name-box">
+              <label for="nome">Nome</label>
+              <input id="nome" maxlength="60" autocomplete="name" placeholder="Ex.: João">
+            </div>
+
+            <div class="vote-box blue">
+              <div class="vote-kicker">Candidato</div>
+              <label for="flavio">Flávio (%)</label>
+              <input id="flavio" inputmode="decimal" maxlength="6" placeholder="50,00">
+              <div class="hint" style="color:#365f86">Digite os votos válidos de Flávio com duas casas decimais.</div>
+            </div>
+
+            <div class="vote-box red">
+              <div class="vote-kicker">Candidato</div>
+              <label for="lula">Lula (%)</label>
+              <input id="lula" inputmode="decimal" maxlength="6" placeholder="50,00">
+              <div class="hint" style="color:#9a4b44">Digite os votos válidos de Lula com duas casas decimais.</div>
+            </div>
+
+            <div class="full">
+              <label>Diferença entre os candidatos</label>
+              <div class="calc" id="diff">Preencha os votos válidos.</div>
+            </div>
+          </div>
+
+          <div id="sumWarn" class="warning hidden" style="margin-top:14px"></div>
+          <div class="actions"><button class="primary" id="registerBtn">🔒 Criptografar e registrar</button></div>
+          <p class="hint">Prazo real aplicado pelo banco: <strong>24/10/2026 às 23:59:59 (Brasília)</strong>. Alterar o relógio do aparelho não permite registrar depois do prazo.</p>
+        </div>
+
+        <aside class="urna-pad" aria-label="Painel ilustrativo da urna">
+          <div>
+            <div class="pad-brand">URNA DO BOLÃO</div>
+            <div class="pad-mini">Painel ilustrativo — o botão real de confirmação é o da tela ao lado.</div>
+            <div class="pad-grid">
+              <div class="pad-key">1</div><div class="pad-key">2</div><div class="pad-key">3</div>
+              <div class="pad-key">4</div><div class="pad-key">5</div><div class="pad-key">6</div>
+              <div class="pad-key">7</div><div class="pad-key">8</div><div class="pad-key">9</div>
+              <div class="pad-key">◀</div><div class="pad-key">0</div><div class="pad-key">↵</div>
+            </div>
+          </div>
+          <div class="pad-actions">
+            <div class="pad-action white">Branco</div>
+            <div class="pad-action orange">Corrige</div>
+            <div class="pad-action green">Confirma</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="card hidden" id="receiptCard">
+    <h2>✅ Registro confirmado</h2>
+    <p class="good">O servidor confirmou a gravação do ciphertext e a página releu o registro salvo.</p>
+    <div class="receipt">
+      <strong>RECIBO DO REGISTRO</strong>
+      <p id="rName"></p>
+      <p id="rTime"></p>
+      <p id="rId" class="mono"></p>
+      <p>SHA-256 do ciphertext:</p>
+      <div class="hash" id="rHash"></div>
+    </div>
+    <div class="actions">
+      <button class="wa" id="shareReceipt">Compartilhar recibo</button>
+      <button class="secondary" id="copyReceipt">Copiar recibo</button>
+      <button class="secondary" id="downloadBackup">⬇️ Baixar backup criptografado</button>
+      <button class="secondary" id="copyBackup">Copiar backup criptografado</button>
+    </div>
+    <div class="warning" style="margin-top:16px"><strong>Redundância:</strong> o backup contém apenas o ciphertext, não os votos válidos em claro.</div>
+  </section>
+
+  <section class="card" id="registros">
+    <h2>📦 Registros recebidos</h2>
+    <p>Esta lista é pública desde já. Ela confirma quem está efetivamente registrado no servidor, mas <strong>não revela os votos válidos</strong> antes da abertura.</p>
+    <div class="actions"><button class="secondary" id="refreshRegistry">Atualizar lista</button></div>
+    <div id="registryStatus" class="hint" style="margin-top:10px">Carregando…</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nome</th><th>Registrado no servidor</th><th>Hash</th><th>Palpite</th></tr></thead>
+        <tbody id="registryBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" id="resultados">
+    <h2>🔓 Resultados</h2>
+    <div id="resultsLock" class="locked">🔒 Os votos válidos ficam protegidos até 25/10/2026 às 21:30 (Brasília).</div>
+    <div id="resultsArea" class="hidden">
+      <p>Após a abertura, o navegador usa a rodada correspondente da rede drand para descriptografar cada registro.</p>
+      <div class="actions"><button class="primary" id="decryptAll">🔓 Carregar / descriptografar resultados</button></div>
+      <div id="resultsStatus" class="hint" style="margin-top:10px"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Lula</th><th>Flávio</th><th>Diferença</th><th>Integridade</th></tr></thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🧯 Recuperar um backup criptografado</h2>
+    <p>Se algum dia um registro sumir do banco, o arquivo de backup continua contendo o ciphertext necessário. Depois da abertura, você pode carregá-lo aqui.</p>
+    <input id="backupFile" type="file" accept=".json,application/json">
+    <div class="actions"><button class="secondary" id="openBackup">Verificar / abrir backup</button></div>
+    <div id="backupResult" class="calc hidden" style="margin-top:14px"></div>
+  </section>
+
+  <section class="card">
+    <h2>🛡️ O que fica armazenado</h2>
+    <p><strong>Em claro:</strong> nome, ID do registro, horário criado pelo servidor, rodada de abertura e hash do ciphertext.</p>
+    <p><strong>Criptografado:</strong> os votos válidos de Lula e Flávio e uma cópia dos identificadores usados para conferir consistência.</p>
+    <p class="hint">O administrador do banco consegue ver o ciphertext antes da abertura, mas não os votos válidos em claro. A descriptografia depende da rodada futura da rede drand.</p>
+  </section>
+</main>
+
+<footer>Supabase + RLS • tlock/drand • layout inspirado em painel eleitoral • registro persistente • backup criptografado • SHA-256</footer>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2?bundle";
+import {
+  timelockEncrypt,
+  timelockDecrypt,
+  mainnetClient,
+  Buffer
+} from "https://esm.sh/tlock-js@0.9.0?bundle";
+
+/* ============================================================
+   PREENCHA SOMENTE ESTAS DUAS LINHAS.
+   Supabase > Connect / API:
+   - Project URL
+   - Publishable key (sb_publishable_...)
+   NUNCA use secret key / service_role aqui.
+   ============================================================ */
+const SUPABASE_URL = "COLE_AQUI_SUA_SUPABASE_URL";
+const SUPABASE_PUBLISHABLE_KEY = "COLE_AQUI_SUA_PUBLISHABLE_KEY";
+
+const TABLE = "palpites_segundo_turno_v2";
+
+// 24/10/2026 23:59:59.999 BRT = 25/10/2026 02:59:59.999 UTC
+const CLOSE = Date.parse("2026-10-25T02:59:59.999Z");
+
+// 25/10/2026 21:30:00 BRT = 26/10/2026 00:30:00 UTC
+const REVEAL = Date.parse("2026-10-26T00:30:00.000Z");
+
+// drand Quicknet usado pelo mainnetClient() do tlock-js 0.9.0.
+const QUICKNET_GENESIS = 1692803367;
+const QUICKNET_PERIOD_SECONDS = 3;
+const REVEAL_UNIX_SECONDS = Math.floor(REVEAL / 1000);
+const UNLOCK_ROUND =
+  Math.floor((REVEAL_UNIX_SECONDS - QUICKNET_GENESIS) / QUICKNET_PERIOD_SECONDS) + 1;
+
+// Valor esperado para 25/10/2026 21:30:00 BRT.
+const EXPECTED_UNLOCK_ROUND = 33390412;
+if (UNLOCK_ROUND !== EXPECTED_UNLOCK_ROUND) {
+  throw new Error("Falha interna ao calcular a rodada de abertura.");
+}
+
+const $ = id => document.getElementById(id);
+const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const drand = mainnetClient();
+
+let receiptText = "";
+let encryptedBackup = null;
+let decrypting = false;
+
+function configOk(){
+  return SUPABASE_URL.startsWith("https://") &&
+         !SUPABASE_URL.includes("COLE_AQUI") &&
+         SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_") &&
+         !SUPABASE_PUBLISHABLE_KEY.includes("COLE_AQUI");
+}
+
+function showConfigWarning(){
+  if(configOk()) return true;
+  $("configError").classList.remove("hidden");
+  $("configError").innerHTML="<strong>Configuração pendente:</strong> preencha SUPABASE_URL e SUPABASE_PUBLISHABLE_KEY no HTML antes de publicar.";
+  $("registerBtn").disabled=true;
+  return false;
+}
+
+function brDate(ms){
+  return new Intl.DateTimeFormat("pt-BR",{
+    timeZone:"America/Sao_Paulo",
+    dateStyle:"short",
+    timeStyle:"medium"
+  }).format(new Date(ms));
+}
+
+function remain(ms){
+  if(ms<=0) return "00:00:00";
+  const s=Math.floor(ms/1000);
+  const d=Math.floor(s/86400);
+  const h=Math.floor((s%86400)/3600);
+  const m=Math.floor((s%3600)/60);
+  const x=s%60;
+  return (d?d+"d ":"")+[h,m,x].map(v=>String(v).padStart(2,"0")).join(":");
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[c]));
+}
+
+function parsePct(v){
+  const s=String(v).trim().replace(",",".");
+  if(!/^(?:\d{1,2}|100)\.\d{2}$/.test(s)){
+    throw Error("Use exatamente duas casas decimais, como 51,27.");
+  }
+  const n=Number(s);
+  if(n<0 || n>100) throw Error("Percentual inválido.");
+  return n;
+}
+
+function fmt(n){ return Number(n).toFixed(2).replace(".",","); }
+function fmtDot(n){ return Number(n).toFixed(2); }
+function shortHash(s){ return s ? s.slice(0,12)+"…"+s.slice(-8) : ""; }
+
+async function sha256(text){
+  const dig=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(text));
+  return [...new Uint8Array(dig)].map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+
+function updateCalc(){
+  const warn=$("sumWarn");
+  warn.classList.add("hidden");
+  try{
+    const a=parsePct($("lula").value), b=parsePct($("flavio").value);
+    $("diff").textContent=fmt(Math.abs(a-b))+" p.p.";
+    if(Math.abs((a+b)-100)>.001){
+      warn.textContent=`Os votos válidos precisam somar 100,00%. Atualmente somam ${fmt(a+b)}%.`;
+      warn.classList.remove("hidden");
+    }
+  }catch{
+    $("diff").textContent="Preencha os percentuais.";
+  }
+}
+$("lula").addEventListener("input",updateCalc);
+$("flavio").addEventListener("input",updateCalc);
+
+function updatePhase(){
+  const now=Date.now();
+
+  if(now<=CLOSE){
+    $("phaseTitle").textContent="🟢 Registros abertos";
+    $("countdown").textContent="Fecha em "+remain(CLOSE-now);
+    $("phaseDetail").textContent="Prazo: 24/10/2026 às 23:59:59 (Brasília).";
+    $("registerForm").classList.remove("hidden");
+    $("registerLock").classList.add("hidden");
+  }else{
+    $("registerForm").classList.add("hidden");
+    $("registerLock").classList.remove("hidden");
+    $("registerLock").textContent="Registros encerrados em 24/10/2026 às 23:59:59 (Brasília).";
+  }
+
+  if(now<REVEAL){
+    $("resultsLock").classList.remove("hidden");
+    $("resultsArea").classList.add("hidden");
+    if(now>CLOSE){
+      $("phaseTitle").textContent="🔒 Registros encerrados";
+      $("countdown").textContent="Abertura em "+remain(REVEAL-now);
+      $("phaseDetail").textContent="Os ciphertexts estão registrados; os números ainda não são descriptografáveis.";
+    }
+  }else{
+    $("resultsLock").classList.add("hidden");
+    $("resultsArea").classList.remove("hidden");
+    $("phaseTitle").textContent="🔓 Resultados liberados";
+    $("countdown").textContent="A rodada de abertura já foi alcançada.";
+    $("phaseDetail").textContent="Abertura programada: 25/10/2026 às 21:30 (Brasília).";
+  }
+}
+
+async function loadRegistry(){
+  if(!configOk()){
+    $("registryStatus").textContent="Preencha os dados do Supabase para consultar os registros.";
+    return;
+  }
+
+  $("registryStatus").textContent="Consultando o servidor…";
+
+  const {data,error}=await sb
+    .from(TABLE)
+    .select("id,nome,cipher_hash,unlock_round,created_at")
+    .order("created_at",{ascending:true});
+
+  if(error){
+    $("registryStatus").innerHTML=`<span class="bad">Erro: ${esc(error.message)}</span>`;
+    return;
+  }
+
+  const body=$("registryBody");
+  body.innerHTML="";
+
+  for(const row of data || []){
+    const tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td><strong>${esc(row.nome)}</strong></td>
+      <td>${esc(brDate(Date.parse(row.created_at)))}</td>
+      <td class="mono" title="${esc(row.cipher_hash)}">${esc(shortHash(row.cipher_hash))}</td>
+      <td><span class="tag">${Date.now()<REVEAL?"🔒 criptografado":"🔓 abertura disponível"}</span></td>`;
+    body.appendChild(tr);
+  }
+
+  $("registryStatus").textContent=(data?.length || 0)+" registro(s) confirmado(s) no banco.";
+}
+
+$("refreshRegistry").addEventListener("click",loadRegistry);
+
+$("registerBtn").addEventListener("click",async()=>{
+  const btn=$("registerBtn");
+  if(!showConfigWarning()) return;
+
+  btn.disabled=true;
+  const old=btn.textContent;
+  btn.textContent="Criptografando…";
+
+  try{
+    if(Date.now()>CLOSE){
+      throw Error("O prazo exibido neste aparelho já encerrou. O banco também aplica o prazo usando o horário do servidor.");
+    }
+
+    const nome=$("nome").value.trim().replace(/\s+/g," ");
+    if(nome.length<2) throw Error("Informe seu nome.");
+
+    const lula=parsePct($("lula").value);
+    const flavio=parsePct($("flavio").value);
+    if(Math.abs((lula+flavio)-100)>.001){
+      throw Error("Os votos válidos de Flávio e Lula precisam somar exatamente 100,00%.");
+    }
+
+    const id=crypto.randomUUID();
+
+    const payload={
+      versao:"bolao-2t-tlock-v1",
+      id,
+      nome,
+      lula:fmtDot(lula),
+      flavio:fmtDot(flavio),
+      unlock_round:UNLOCK_ROUND
+    };
+
+    const plaintext=JSON.stringify(payload);
+    const ciphertext=await timelockEncrypt(
+      UNLOCK_ROUND,
+      Buffer.from(plaintext,"utf8"),
+      drand
+    );
+
+    const cipher_hash=await sha256(ciphertext);
+
+    btn.textContent="Gravando no servidor…";
+
+    const {error:insertError}=await sb.from(TABLE).insert({
+      id,
+      nome,
+      ciphertext,
+      cipher_hash,
+      unlock_round:UNLOCK_ROUND
+    });
+
+    if(insertError){
+      if(insertError.code==="23505") throw Error("Já existe um registro com esse nome.");
+      if(insertError.code==="42501") throw Error("O banco recusou o registro. O prazo pode ter encerrado ou o SQL de segurança não foi aplicado corretamente.");
+      throw Error(insertError.message);
+    }
+
+    btn.textContent="Confirmando gravação…";
+
+    const {data:confirm,error:confirmError}=await sb
+      .from(TABLE)
+      .select("id,nome,ciphertext,cipher_hash,unlock_round,created_at")
+      .eq("id",id)
+      .single();
+
+    if(confirmError || !confirm){
+      throw Error("O envio foi feito, mas não consegui reler o registro para confirmá-lo. Atualize a lista de registros antes de tentar novamente.");
+    }
+
+    if(confirm.cipher_hash!==cipher_hash || await sha256(confirm.ciphertext)!==cipher_hash){
+      throw Error("O registro relido do servidor não corresponde ao ciphertext enviado.");
+    }
+
+    encryptedBackup={
+      versao:"bolao-backup-tlock-v1",
+      id:confirm.id,
+      nome:confirm.nome,
+      created_at:confirm.created_at,
+      unlock_round:confirm.unlock_round,
+      cipher_hash:confirm.cipher_hash,
+      ciphertext:confirm.ciphertext
+    };
+
+    receiptText=
+`🗳️ BOLÃO — SEGUNDO TURNO
+
+Participante: ${confirm.nome}
+Registro confirmado no servidor: ${brDate(Date.parse(confirm.created_at))}
+ID: ${confirm.id}
+SHA-256 do ciphertext: ${confirm.cipher_hash}
+
+🔒 Os percentuais estão criptografados.
+🔓 Abertura programada: 25/10/2026 às 21:30 (Brasília).
+
+O registro pode ser conferido na lista pública do site.`;
+
+    $("rName").innerHTML=`Participante: <strong>${esc(confirm.nome)}</strong>`;
+    $("rTime").innerHTML=`Confirmado pelo servidor: <strong>${esc(brDate(Date.parse(confirm.created_at)))}</strong>`;
+    $("rId").textContent=`ID: ${confirm.id}`;
+    $("rHash").textContent=confirm.cipher_hash;
+    $("receiptCard").classList.remove("hidden");
+    $("receiptCard").scrollIntoView({behavior:"smooth"});
+
+    $("nome").disabled=true;
+    $("lula").disabled=true;
+    $("flavio").disabled=true;
+    btn.textContent="✅ Registrado e confirmado";
+
+    await loadRegistry();
+    return;
+  }catch(e){
+    alert(e.message);
+  }finally{
+    if(btn.textContent!=="✅ Registrado e confirmado"){
+      btn.disabled=false;
+      btn.textContent=old;
+    }
+  }
+});
+
+$("shareReceipt").addEventListener("click",()=>{
+  window.open("https://wa.me/?text="+encodeURIComponent(receiptText),"_blank","noopener");
+});
+
+$("copyReceipt").addEventListener("click",async()=>{
+  try{
+    await navigator.clipboard.writeText(receiptText);
+    alert("Recibo copiado.");
+  }catch{
+    prompt("Copie o recibo:",receiptText);
+  }
+});
+
+$("downloadBackup").addEventListener("click",()=>{
+  if(!encryptedBackup) return;
+  const blob=new Blob([JSON.stringify(encryptedBackup,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="backup_criptografado_"+encryptedBackup.nome.replace(/[^\p{L}\p{N}_-]+/gu,"_")+".json";
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),500);
+});
+
+$("copyBackup").addEventListener("click",async()=>{
+  if(!encryptedBackup) return;
+  const text=JSON.stringify(encryptedBackup,null,2);
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("Backup criptografado copiado.");
+  }catch{
+    prompt("Copie o backup criptografado:",text);
+  }
+});
+
+async function decryptRow(row){
+  const actualHash=await sha256(row.ciphertext);
+  if(actualHash!==row.cipher_hash){
+    throw Error("hash do ciphertext não confere");
+  }
+  if(Number(row.unlock_round)!==UNLOCK_ROUND){
+    throw Error("rodada de abertura inesperada");
+  }
+
+  const plainBuffer=await timelockDecrypt(row.ciphertext,drand);
+  const payload=JSON.parse(plainBuffer.toString("utf8"));
+
+  if(payload.versao!=="bolao-2t-tlock-v1") throw Error("versão interna inválida");
+  if(payload.id!==row.id) throw Error("ID interno divergente");
+  if(payload.nome!==row.nome) throw Error("nome interno divergente");
+  if(Number(payload.unlock_round)!==UNLOCK_ROUND) throw Error("rodada interna divergente");
+
+  const lula=parsePct(payload.lula);
+  const flavio=parsePct(payload.flavio);
+  if(Math.abs((lula+flavio)-100)>.001) throw Error("votos válidos internos não somam 100");
+
+  return {payload,lula,flavio};
+}
+
+async function loadResults(){
+  if(decrypting) return;
+  if(Date.now()<REVEAL){
+    $("resultsStatus").textContent="A abertura ainda não chegou.";
+    return;
+  }
+  if(!configOk()){
+    $("resultsStatus").innerHTML='<span class="bad">Configure o Supabase primeiro.</span>';
+    return;
+  }
+
+  decrypting=true;
+  $("decryptAll").disabled=true;
+  $("resultsStatus").textContent="Carregando ciphertexts…";
+  $("resultsBody").innerHTML="";
+
+  try{
+    const {data,error}=await sb
+      .from(TABLE)
+      .select("id,nome,ciphertext,cipher_hash,unlock_round,created_at")
+      .order("created_at",{ascending:true});
+
+    if(error) throw Error(error.message);
+
+    let okCount=0;
+    for(const row of data || []){
+      const tr=document.createElement("tr");
+      tr.innerHTML=`
+        <td><strong>${esc(row.nome)}</strong></td>
+        <td colspan="3">Descriptografando…</td>
+        <td>⏳</td>`;
+      $("resultsBody").appendChild(tr);
+
+      try{
+        const r=await decryptRow(row);
+        tr.innerHTML=`
+          <td><strong>${esc(row.nome)}</strong></td>
+          <td>${fmt(r.lula)}%</td>
+          <td>${fmt(r.flavio)}%</td>
+          <td>${fmt(Math.abs(r.lula-r.flavio))} p.p.</td>
+          <td class="good">✓ íntegro</td>`;
+        okCount++;
+      }catch(e){
+        tr.innerHTML=`
+          <td><strong>${esc(row.nome)}</strong></td>
+          <td colspan="3">—</td>
+          <td class="bad">✗ ${esc(e.message)}</td>`;
+      }
+    }
+
+    $("resultsStatus").textContent=`${okCount} de ${data?.length || 0} registro(s) descriptografado(s) e verificado(s). Se acabou de dar 21:30, a rodada pode levar alguns segundos para ficar disponível.`;
+  }catch(e){
+    $("resultsStatus").innerHTML=`<span class="bad">Erro: ${esc(e.message)}</span>`;
+  }finally{
+    decrypting=false;
+    $("decryptAll").disabled=false;
+  }
+}
+$("decryptAll").addEventListener("click",loadResults);
+
+$("openBackup").addEventListener("click",async()=>{
+  const box=$("backupResult");
+  box.classList.remove("hidden");
+  const file=$("backupFile").files?.[0];
+  if(!file){
+    box.innerHTML='<span class="bad">Selecione um arquivo de backup .json.</span>';
+    return;
+  }
+
+  try{
+    const backup=JSON.parse(await file.text());
+    if(backup.versao!=="bolao-backup-tlock-v1" ||
+       !backup.id || !backup.nome || !backup.ciphertext ||
+       !backup.cipher_hash || !backup.unlock_round){
+      throw Error("backup inválido ou incompleto");
+    }
+
+    const hash=await sha256(backup.ciphertext);
+    if(hash!==backup.cipher_hash) throw Error("o hash do backup não confere");
+
+    if(Date.now()<REVEAL){
+      box.innerHTML=`<span class="good">✓ Backup íntegro.</span><br>Participante: <strong>${esc(backup.nome)}</strong><br>O conteúdo continua criptografado até a abertura.`;
+      return;
+    }
+
+    const row={
+      id:backup.id,
+      nome:backup.nome,
+      ciphertext:backup.ciphertext,
+      cipher_hash:backup.cipher_hash,
+      unlock_round:backup.unlock_round,
+      created_at:backup.created_at
+    };
+    const r=await decryptRow(row);
+    box.innerHTML=`<span class="good">✓ Backup íntegro e descriptografado.</span><br>
+      Participante: <strong>${esc(backup.nome)}</strong><br>
+      Lula: <strong>${fmt(r.lula)}%</strong><br>
+      Flávio: <strong>${fmt(r.flavio)}%</strong><br>
+      Diferença: <strong>${fmt(Math.abs(r.lula-r.flavio))} p.p.</strong>`;
+  }catch(e){
+    box.innerHTML=`<span class="bad">Erro: ${esc(e.message)}</span>`;
+  }
+});
+
+showConfigWarning();
+updatePhase();
+setInterval(updatePhase,1000);
+loadRegistry();
+</script>
+</body>
+</html>
+
+</body>
+</html>
