@@ -28,9 +28,12 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 a{color:var(--blue)}
 .topbar{background:#f8f6f2;border-bottom:1px solid var(--line)}
-.topbar-inner{max-width:1120px;margin:auto;padding:18px 18px;display:flex;justify-content:space-between;gap:18px;align-items:center}
-.brand{line-height:1}.brand .title{font-family:Georgia, 'Times New Roman', serif;font-size:2rem;letter-spacing:.02em}.brand .sub{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-.topnav{display:flex;gap:20px;flex-wrap:wrap;font-size:.98rem}.topnav a{text-decoration:none;color:var(--ink)}
+.topbar-inner{max-width:1120px;margin:auto;padding:18px;display:flex;justify-content:space-between;gap:18px;align-items:center}
+.brand{line-height:1}
+.brand .title{font-family:Georgia,'Times New Roman',serif;font-size:2rem;letter-spacing:.02em}
+.brand .sub{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.topnav{display:flex;gap:20px;flex-wrap:wrap;font-size:.98rem}
+.topnav a{text-decoration:none;color:var(--ink)}
 .wrap{max-width:1120px;margin:auto;padding:18px}
 .hero{padding:26px 0 6px}
 .crumb{font-size:.95rem;color:var(--muted);margin-bottom:10px}
@@ -43,7 +46,8 @@ a{color:var(--blue)}
 .hero-alert{background:linear-gradient(135deg,#fff6d9,#ffe7a1 55%,#ffd36f);border:2px solid var(--gold)}
 .hero-badge{display:inline-block;background:#7f2121;color:#fff;padding:6px 10px;border-radius:999px;font-size:.82rem;font-weight:850;letter-spacing:.04em;margin-bottom:12px}
 .mega{font-size:clamp(1.65rem,4vw,2.7rem);line-height:1.04;font-weight:900;letter-spacing:-.04em;margin:0 0 10px}
-.submega{font-size:1.03rem;line-height:1.62;margin:0}.mini{margin-top:12px;color:#6f4d00;font-size:.94rem}
+.submega{font-size:1.03rem;line-height:1.62;margin:0}
+.mini{margin-top:12px;color:#6f4d00;font-size:.94rem}
 .summary-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;align-items:stretch}
 .info-panel{display:flex;flex-direction:column;justify-content:center}
 .info-kicker{font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
@@ -60,10 +64,13 @@ a{color:var(--blue)}
 .cand-name.red{color:var(--red)}
 .card h2{font-size:1.35rem;line-height:1.2;margin:0 0 14px;color:var(--ink);letter-spacing:-.03em}
 .rules-card{background:linear-gradient(180deg,#fbfcfe,#f6f8fb)}
-.rules-list{margin:0;padding-left:1.15rem;line-height:1.7}.rules-list li+li{margin-top:8px}
+.rules-list{margin:0;padding-left:1.15rem;line-height:1.7}
+.rules-list li+li{margin-top:8px}
 .rules-note{margin-top:14px;background:#eff5fb;border:1px solid #dbe6f0;border-radius:14px;padding:14px}
 .warning{border-left:4px solid var(--warn);padding:11px 13px;background:#fff7db;border-radius:8px}
-.good{color:var(--good);font-weight:850}.bad{color:var(--bad);font-weight:850}.hidden{display:none!important}
+.good{color:var(--good);font-weight:850}
+.bad{color:var(--bad);font-weight:850}
+.hidden{display:none!important}
 .locked{background:#f5f2ec;border:1px dashed #bdb3a7;padding:14px;border-radius:12px;color:#6e675f}
 .hint{color:var(--muted);font-size:.91rem;line-height:1.55}
 .urna-shell{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;background:#d7d2cb;border:1px solid #bdb6ad;border-radius:24px;padding:20px}
@@ -88,7 +95,9 @@ input:focus,textarea:focus{outline:3px solid #dae6f2;border-color:#7897b4}
 .calc{background:#f0ede8;border:1px solid #ddd5ca;border-radius:14px;padding:14px;font-size:1rem}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
 button{border:0;border-radius:12px;padding:13px 16px;font-weight:800;cursor:pointer}
-.primary{background:var(--blue);color:#fff}.secondary{background:#ece8e2;color:var(--ink)}.wa{background:var(--good);color:#fff}
+.primary{background:var(--blue);color:#fff}
+.secondary{background:#ece8e2;color:var(--ink)}
+.wa{background:var(--good);color:#fff}
 button:disabled{opacity:.45;cursor:not-allowed}
 .big-record{font-size:1rem;line-height:1.6;background:#eef5fb;border:1px solid #dbe6f0;border-radius:14px;padding:15px;margin:0 0 16px}
 .urna-pad{background:#cfcac3;border-radius:16px;padding:16px;border:1px solid #b1aaa1;display:flex;flex-direction:column;justify-content:space-between}
@@ -98,7 +107,9 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .pad-key{background:#2c2c2c;color:#fff;border-radius:8px;padding:12px 0;text-align:center;font-weight:800;box-shadow:inset 0 -2px 0 rgba(255,255,255,.07),0 2px 0 rgba(0,0,0,.16)}
 .pad-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .pad-action{padding:9px 6px;border-radius:8px;text-align:center;font-size:.72rem;font-weight:900;color:#111;text-transform:uppercase}
-.pad-action.white{background:#fafafa;border:1px solid #ddd}.pad-action.orange{background:#f4a742}.pad-action.green{background:#44a35d;color:#fff}
+.pad-action.white{background:#fafafa;border:1px solid #ddd}
+.pad-action.orange{background:#f4a742}
+.pad-action.green{background:#44a35d;color:#fff}
 .receipt{border:2px solid #cfc8be;border-radius:16px;padding:17px;background:#fff}
 .hash{font:.82rem ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;background:#f2f5f9;padding:10px;border-radius:10px;border:1px solid #e0e7f0}
 .table-wrap{overflow-x:auto}
@@ -108,11 +119,24 @@ th{font-size:.84rem;color:#666;text-transform:uppercase;letter-spacing:.05em}
 .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.78rem;overflow-wrap:anywhere}
 .tag{display:inline-block;padding:3px 8px;border-radius:999px;background:#eef2f7;font-size:.8rem;font-weight:750}
 footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
-@media(max-width:980px){.summary-grid,.urna-shell{grid-template-columns:1fr}.sim-card{min-height:auto}.urna-screen{min-height:auto}}
-@media(max-width:700px){.topbar-inner{flex-direction:column;align-items:flex-start}.grid{grid-template-columns:1fr}.wrap{padding:14px}.card{padding:18px}.tabs{padding:8px}.tab{padding:10px 14px}.brand .title{font-size:1.6rem}}
+@media(max-width:980px){
+  .summary-grid,.urna-shell{grid-template-columns:1fr}
+  .sim-card{min-height:auto}
+  .urna-screen{min-height:auto}
+}
+@media(max-width:700px){
+  .topbar-inner{flex-direction:column;align-items:flex-start}
+  .grid{grid-template-columns:1fr}
+  .wrap{padding:14px}
+  .card{padding:18px}
+  .tabs{padding:8px}
+  .tab{padding:10px 14px}
+  .brand .title{font-size:1.6rem}
+}
 </style>
 </head>
 <body>
+
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">
@@ -129,16 +153,23 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
 </header>
 
 <main class="wrap">
+
   <section class="hero">
     <div class="crumb">Início › Modelo Presidencial › Segundo turno</div>
     <h1>Modelo Presidencial 2026 — 2º turno</h1>
     <p>Palpite em <strong>votos válidos</strong>, com <strong>duas casas decimais</strong> e soma obrigatória de <strong>100,00%</strong>. O registro fica salvo no servidor no momento da confirmação e os números ficam protegidos até a abertura oficial.</p>
-    <div class="tabs" role="tablist" aria-label="Áreas">
+    <div class="tabs">
       <div class="tab active">Presidente</div>
       <div class="tab">Regras</div>
       <div class="tab">Registros</div>
       <div class="tab">Resultados</div>
     </div>
+  </section>
+
+  <section class="card">
+    <strong id="phaseTitle">Carregando horário…</strong>
+    <div id="countdown" style="font-weight:800;margin-top:6px"></div>
+    <div id="phaseDetail" class="hint" style="margin-top:6px"></div>
   </section>
 
   <section class="card hero-alert">
@@ -148,7 +179,7 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
     <p class="mini">Versão séria para fins protocolares: <strong>Erick venceu a aposta do primeiro turno</strong>. Os perdedores devem reconhecer o resultado das urnas e do vinho.</p>
   </section>
 
-  <section class="card summary-grid" aria-label="Resumo do modelo">
+  <section class="card summary-grid">
     <div class="info-panel">
       <div class="info-kicker">Palpite do bolão</div>
       <h2 class="info-title">Votos válidos, registro persistente e abertura programada.</h2>
@@ -169,7 +200,7 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
   <section class="card rules-card" id="regras">
     <h2>📜 Regras do bolão</h2>
     <ol class="rules-list">
-      <li><strong>Prazo final para registrar:</strong> até <strong>sábado, 24/10/2026, às 23:59:59</strong>, horário de Brasília.</li>
+      <li><strong>Prazo final para registrar:</strong> até <strong>domingo, 25/10/2026, às 16:59:59</strong>, horário de Brasília.</li>
       <li><strong>O palpite é em votos válidos.</strong> Você deve informar os percentuais de <strong>Flávio</strong> e <strong>Lula</strong>, sempre com <strong>duas casas decimais</strong>.</li>
       <li><strong>A soma precisa dar exatamente 100,00%.</strong> Se não der, o sistema não confirma o registro.</li>
       <li><strong>Um registro por nome.</strong> Depois de gravado no servidor, o site público não oferece edição nem substituição.</li>
@@ -191,6 +222,7 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
     <div id="registerForm">
       <div class="urna-shell">
         <div class="urna-screen">
+
           <div class="urna-head">
             <div>
               <div class="urna-title">Seu palpite</div>
@@ -226,21 +258,34 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
           </div>
 
           <div id="sumWarn" class="warning hidden" style="margin-top:14px"></div>
-          <div class="actions"><button class="primary" id="registerBtn">🔒 Criptografar e registrar</button></div>
-          <p class="hint">Prazo real aplicado pelo banco: <strong>24/10/2026 às 23:59:59 (Brasília)</strong>. Alterar o relógio do aparelho não permite registrar depois do prazo.</p>
+
+          <div class="actions">
+            <button class="primary" id="registerBtn">🔒 Criptografar e registrar</button>
+          </div>
+
+          <p class="hint">Prazo real aplicado pelo banco: <strong>25/10/2026 às 16:59:59 (Brasília)</strong>. Alterar o relógio do aparelho não permite registrar depois do prazo.</p>
         </div>
 
-        <aside class="urna-pad" aria-label="Painel ilustrativo da urna">
+        <aside class="urna-pad">
           <div>
             <div class="pad-brand">URNA DO BOLÃO</div>
             <div class="pad-mini">Painel ilustrativo — o botão real de confirmação é o da tela ao lado.</div>
             <div class="pad-grid">
-              <div class="pad-key">1</div><div class="pad-key">2</div><div class="pad-key">3</div>
-              <div class="pad-key">4</div><div class="pad-key">5</div><div class="pad-key">6</div>
-              <div class="pad-key">7</div><div class="pad-key">8</div><div class="pad-key">9</div>
-              <div class="pad-key">◀</div><div class="pad-key">0</div><div class="pad-key">↵</div>
+              <div class="pad-key">1</div>
+              <div class="pad-key">2</div>
+              <div class="pad-key">3</div>
+              <div class="pad-key">4</div>
+              <div class="pad-key">5</div>
+              <div class="pad-key">6</div>
+              <div class="pad-key">7</div>
+              <div class="pad-key">8</div>
+              <div class="pad-key">9</div>
+              <div class="pad-key">◀</div>
+              <div class="pad-key">0</div>
+              <div class="pad-key">↵</div>
             </div>
           </div>
+
           <div class="pad-actions">
             <div class="pad-action white">Branco</div>
             <div class="pad-action orange">Corrige</div>
@@ -254,6 +299,7 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
   <section class="card hidden" id="receiptCard">
     <h2>✅ Registro confirmado</h2>
     <p class="good">O servidor confirmou a gravação do ciphertext e a página releu o registro salvo.</p>
+
     <div class="receipt">
       <strong>RECIBO DO REGISTRO</strong>
       <p id="rName"></p>
@@ -262,23 +308,39 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
       <p>SHA-256 do ciphertext:</p>
       <div class="hash" id="rHash"></div>
     </div>
+
     <div class="actions">
       <button class="wa" id="shareReceipt">Compartilhar recibo</button>
       <button class="secondary" id="copyReceipt">Copiar recibo</button>
       <button class="secondary" id="downloadBackup">⬇️ Baixar backup criptografado</button>
       <button class="secondary" id="copyBackup">Copiar backup criptografado</button>
     </div>
-    <div class="warning" style="margin-top:16px"><strong>Redundância:</strong> o backup contém apenas o ciphertext, não os votos válidos em claro.</div>
+
+    <div class="warning" style="margin-top:16px">
+      <strong>Redundância:</strong> o backup contém apenas o ciphertext, não os votos válidos em claro.
+    </div>
   </section>
 
   <section class="card" id="registros">
     <h2>📦 Registros recebidos</h2>
     <p>Esta lista é pública desde já. Ela confirma quem está efetivamente registrado no servidor, mas <strong>não revela os votos válidos</strong> antes da abertura.</p>
-    <div class="actions"><button class="secondary" id="refreshRegistry">Atualizar lista</button></div>
+
+    <div class="actions">
+      <button class="secondary" id="refreshRegistry">Atualizar lista</button>
+    </div>
+
     <div id="registryStatus" class="hint" style="margin-top:10px">Carregando…</div>
+
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Nome</th><th>Registrado no servidor</th><th>Hash</th><th>Palpite</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Registrado no servidor</th>
+            <th>Hash</th>
+            <th>Palpite</th>
+          </tr>
+        </thead>
         <tbody id="registryBody"></tbody>
       </table>
     </div>
@@ -286,14 +348,31 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
 
   <section class="card" id="resultados">
     <h2>🔓 Resultados</h2>
-    <div id="resultsLock" class="locked">🔒 Os votos válidos ficam protegidos até 25/10/2026 às 21:30 (Brasília).</div>
+
+    <div id="resultsLock" class="locked">
+      🔒 Os votos válidos ficam protegidos até 25/10/2026 às 21:30 (Brasília).
+    </div>
+
     <div id="resultsArea" class="hidden">
       <p>Após a abertura, o navegador usa a rodada correspondente da rede drand para descriptografar cada registro.</p>
-      <div class="actions"><button class="primary" id="decryptAll">🔓 Carregar / descriptografar resultados</button></div>
+
+      <div class="actions">
+        <button class="primary" id="decryptAll">🔓 Carregar / descriptografar resultados</button>
+      </div>
+
       <div id="resultsStatus" class="hint" style="margin-top:10px"></div>
+
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Nome</th><th>Lula</th><th>Flávio</th><th>Diferença</th><th>Integridade</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Lula</th>
+              <th>Flávio</th>
+              <th>Diferença</th>
+              <th>Integridade</th>
+            </tr>
+          </thead>
           <tbody id="resultsBody"></tbody>
         </table>
       </div>
@@ -303,8 +382,13 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
   <section class="card">
     <h2>🧯 Recuperar um backup criptografado</h2>
     <p>Se algum dia um registro sumir do banco, o arquivo de backup continua contendo o ciphertext necessário. Depois da abertura, você pode carregá-lo aqui.</p>
+
     <input id="backupFile" type="file" accept=".json,application/json">
-    <div class="actions"><button class="secondary" id="openBackup">Verificar / abrir backup</button></div>
+
+    <div class="actions">
+      <button class="secondary" id="openBackup">Verificar / abrir backup</button>
+    </div>
+
     <div id="backupResult" class="calc hidden" style="margin-top:14px"></div>
   </section>
 
@@ -314,11 +398,17 @@ footer{text-align:center;color:#6d685f;padding:16px 16px 36px;font-size:.84rem}
     <p><strong>Criptografado:</strong> os votos válidos de Lula e Flávio e uma cópia dos identificadores usados para conferir consistência.</p>
     <p class="hint">O administrador do banco consegue ver o ciphertext antes da abertura, mas não os votos válidos em claro. A descriptografia depende da rodada futura da rede drand.</p>
   </section>
+
 </main>
 
-<footer>Supabase + RLS • tlock/drand • layout inspirado em painel eleitoral • registro persistente • backup criptografado • SHA-256</footer>
+<footer>
+  Supabase + RLS • tlock/drand • layout inspirado em painel eleitoral • registro persistente • backup criptografado • SHA-256
+</footer>
+
 <script type="module">
+
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2?bundle";
+
 import {
   timelockEncrypt,
   timelockDecrypt,
@@ -326,273 +416,600 @@ import {
   Buffer
 } from "https://esm.sh/tlock-js@0.9.0?bundle";
 
-/* ============================================================
-   PREENCHA SOMENTE ESTAS DUAS LINHAS.
-   Supabase > Connect / API:
-   - Project URL
-   - Publishable key (sb_publishable_...)
-   NUNCA use secret key / service_role aqui.
-   ============================================================ */
-const SUPABASE_URL = "https://rtkchktbbzcxwdpongjr.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_svsL0lYXGtsM8QR_qfM5KA_yRDFXuWu";
+const SUPABASE_URL =
+  "https://rtkchktbbzcxwdpongjr.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_svsL0lYXGtsM8QR_qfM5KA_yRDFXuWu";
 
 const TABLE = "palpites_segundo_turno_v2";
 
-// 24/10/2026 23:59:59.999 BRT = 25/10/2026 02:59:59.999 UTC
-const CLOSE = Date.parse("2026-10-25T02:59:59.999Z");
+/*
+25/10/2026 16:59:59.999 BRT
+=
+25/10/2026 19:59:59.999 UTC
+*/
+const CLOSE =
+  Date.parse("2026-10-25T19:59:59.999Z");
 
-// 25/10/2026 21:30:00 BRT = 26/10/2026 00:30:00 UTC
-const REVEAL = Date.parse("2026-10-26T00:30:00.000Z");
+/*
+25/10/2026 21:30 BRT
+=
+26/10/2026 00:30 UTC
+*/
+const REVEAL =
+  Date.parse("2026-10-26T00:30:00.000Z");
 
-// drand Quicknet usado pelo mainnetClient() do tlock-js 0.9.0.
 const QUICKNET_GENESIS = 1692803367;
 const QUICKNET_PERIOD_SECONDS = 3;
-const REVEAL_UNIX_SECONDS = Math.floor(REVEAL / 1000);
-const UNLOCK_ROUND =
-  Math.floor((REVEAL_UNIX_SECONDS - QUICKNET_GENESIS) / QUICKNET_PERIOD_SECONDS) + 1;
 
-// Valor esperado para 25/10/2026 21:30:00 BRT.
+const REVEAL_UNIX_SECONDS =
+  Math.floor(REVEAL / 1000);
+
+const UNLOCK_ROUND =
+  Math.floor(
+    (REVEAL_UNIX_SECONDS - QUICKNET_GENESIS)
+    / QUICKNET_PERIOD_SECONDS
+  ) + 1;
+
 const EXPECTED_UNLOCK_ROUND = 33390412;
-if (UNLOCK_ROUND !== EXPECTED_UNLOCK_ROUND) {
-  throw new Error("Falha interna ao calcular a rodada de abertura.");
+
+if(UNLOCK_ROUND !== EXPECTED_UNLOCK_ROUND){
+  throw new Error(
+    "Falha interna ao calcular a rodada de abertura."
+  );
 }
 
-const $ = id => document.getElementById(id);
-const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-const drand = mainnetClient();
+const $ =
+  id => document.getElementById(id);
+
+const sb =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+const drand =
+  mainnetClient();
 
 let receiptText = "";
 let encryptedBackup = null;
 let decrypting = false;
 
 function configOk(){
-  return SUPABASE_URL.startsWith("https://") &&
-         !SUPABASE_URL.includes("COLE_AQUI") &&
-         SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_") &&
-         !SUPABASE_PUBLISHABLE_KEY.includes("COLE_AQUI");
+  return (
+    SUPABASE_URL.startsWith("https://")
+    &&
+    SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_")
+  );
 }
 
 function showConfigWarning(){
+
   if(configOk()) return true;
+
   $("configError").classList.remove("hidden");
-  $("configError").innerHTML="<strong>Configuração pendente:</strong> preencha SUPABASE_URL e SUPABASE_PUBLISHABLE_KEY no HTML antes de publicar.";
-  $("registerBtn").disabled=true;
+
+  $("configError").innerHTML =
+    "<strong>Configuração pendente.</strong>";
+
+  $("registerBtn").disabled = true;
+
   return false;
 }
 
 function brDate(ms){
-  return new Intl.DateTimeFormat("pt-BR",{
-    timeZone:"America/Sao_Paulo",
-    dateStyle:"short",
-    timeStyle:"medium"
-  }).format(new Date(ms));
+
+  return new Intl.DateTimeFormat(
+    "pt-BR",
+    {
+      timeZone:"America/Sao_Paulo",
+      dateStyle:"short",
+      timeStyle:"medium"
+    }
+  ).format(new Date(ms));
 }
 
 function remain(ms){
-  if(ms<=0) return "00:00:00";
-  const s=Math.floor(ms/1000);
-  const d=Math.floor(s/86400);
-  const h=Math.floor((s%86400)/3600);
-  const m=Math.floor((s%3600)/60);
-  const x=s%60;
-  return (d?d+"d ":"")+[h,m,x].map(v=>String(v).padStart(2,"0")).join(":");
+
+  if(ms <= 0)
+    return "00:00:00";
+
+  const s = Math.floor(ms/1000);
+  const d = Math.floor(s/86400);
+  const h = Math.floor((s%86400)/3600);
+  const m = Math.floor((s%3600)/60);
+  const x = s%60;
+
+  return
+    (d ? d+"d " : "")
+    +
+    [h,m,x]
+    .map(v=>String(v).padStart(2,"0"))
+    .join(":");
 }
 
 function esc(s){
-  return String(s).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[c]));
+
+  return String(s).replace(
+    /[&<>"']/g,
+    c=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c])
+  );
 }
 
 function parsePct(v){
-  const s=String(v).trim().replace(",",".");
-  if(!/^(?:\d{1,2}|100)\.\d{2}$/.test(s)){
-    throw Error("Use exatamente duas casas decimais, como 51,27.");
+
+  const s =
+    String(v)
+    .trim()
+    .replace(",",".");
+
+  if(
+    !/^(?:\d{1,2}|100)\.\d{2}$/.test(s)
+  ){
+    throw Error(
+      "Use exatamente duas casas decimais, como 51,27."
+    );
   }
-  const n=Number(s);
-  if(n<0 || n>100) throw Error("Percentual inválido.");
+
+  const n = Number(s);
+
+  if(n < 0 || n > 100)
+    throw Error("Percentual inválido.");
+
   return n;
 }
 
-function fmt(n){ return Number(n).toFixed(2).replace(".",","); }
-function fmtDot(n){ return Number(n).toFixed(2); }
-function shortHash(s){ return s ? s.slice(0,12)+"…"+s.slice(-8) : ""; }
+function fmt(n){
+  return Number(n)
+    .toFixed(2)
+    .replace(".",",");
+}
+
+function fmtDot(n){
+  return Number(n)
+    .toFixed(2);
+}
+
+function shortHash(s){
+  return s
+    ? s.slice(0,12)+"…"+s.slice(-8)
+    : "";
+}
 
 async function sha256(text){
-  const dig=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(text));
-  return [...new Uint8Array(dig)].map(x=>x.toString(16).padStart(2,"0")).join("");
+
+  const dig =
+    await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(text)
+    );
+
+  return [
+    ...new Uint8Array(dig)
+  ]
+  .map(
+    x=>x.toString(16).padStart(2,"0")
+  )
+  .join("");
 }
 
 function updateCalc(){
-  const warn=$("sumWarn");
+
+  const warn = $("sumWarn");
+
   warn.classList.add("hidden");
+
   try{
-    const a=parsePct($("lula").value), b=parsePct($("flavio").value);
-    $("diff").textContent=fmt(Math.abs(a-b))+" p.p.";
-    if(Math.abs((a+b)-100)>.001){
-      warn.textContent=`Os votos válidos precisam somar 100,00%. Atualmente somam ${fmt(a+b)}%.`;
+
+    const lula =
+      parsePct($("lula").value);
+
+    const flavio =
+      parsePct($("flavio").value);
+
+    $("diff").textContent =
+      fmt(
+        Math.abs(lula-flavio)
+      )
+      +
+      " p.p.";
+
+    if(
+      Math.abs(
+        lula+flavio-100
+      ) > .001
+    ){
+
+      warn.textContent =
+        `Os votos válidos precisam somar 100,00%. Atualmente somam ${fmt(lula+flavio)}%.`;
+
       warn.classList.remove("hidden");
     }
+
   }catch{
-    $("diff").textContent="Preencha os percentuais.";
+
+    $("diff").textContent =
+      "Preencha os percentuais.";
   }
 }
-$("lula").addEventListener("input",updateCalc);
-$("flavio").addEventListener("input",updateCalc);
+
+$("lula").addEventListener(
+  "input",
+  updateCalc
+);
+
+$("flavio").addEventListener(
+  "input",
+  updateCalc
+);
 
 function updatePhase(){
-  const now=Date.now();
 
-  if(now<=CLOSE){
-    $("phaseTitle").textContent="🟢 Registros abertos";
-    $("countdown").textContent="Fecha em "+remain(CLOSE-now);
-    $("phaseDetail").textContent="Prazo: 24/10/2026 às 23:59:59 (Brasília).";
-    $("registerForm").classList.remove("hidden");
-    $("registerLock").classList.add("hidden");
+  const now = Date.now();
+
+  if(now <= CLOSE){
+
+    $("phaseTitle").textContent =
+      "🟢 Registros abertos";
+
+    $("countdown").textContent =
+      "Fecha em "
+      +
+      remain(CLOSE-now);
+
+    $("phaseDetail").textContent =
+      "Prazo: 25/10/2026 às 16:59:59 (Brasília).";
+
+    $("registerForm")
+      .classList.remove("hidden");
+
+    $("registerLock")
+      .classList.add("hidden");
+
   }else{
-    $("registerForm").classList.add("hidden");
-    $("registerLock").classList.remove("hidden");
-    $("registerLock").textContent="Registros encerrados em 24/10/2026 às 23:59:59 (Brasília).";
+
+    $("registerForm")
+      .classList.add("hidden");
+
+    $("registerLock")
+      .classList.remove("hidden");
+
+    $("registerLock").textContent =
+      "Registros encerrados em 25/10/2026 às 16:59:59 (Brasília).";
   }
 
-  if(now<REVEAL){
-    $("resultsLock").classList.remove("hidden");
-    $("resultsArea").classList.add("hidden");
-    if(now>CLOSE){
-      $("phaseTitle").textContent="🔒 Registros encerrados";
-      $("countdown").textContent="Abertura em "+remain(REVEAL-now);
-      $("phaseDetail").textContent="Os ciphertexts estão registrados; os números ainda não são descriptografáveis.";
+  if(now < REVEAL){
+
+    $("resultsLock")
+      .classList.remove("hidden");
+
+    $("resultsArea")
+      .classList.add("hidden");
+
+    if(now > CLOSE){
+
+      $("phaseTitle").textContent =
+        "🔒 Registros encerrados";
+
+      $("countdown").textContent =
+        "Abertura em "
+        +
+        remain(REVEAL-now);
+
+      $("phaseDetail").textContent =
+        "Os ciphertexts estão registrados; os números ainda não são descriptografáveis.";
     }
+
   }else{
-    $("resultsLock").classList.add("hidden");
-    $("resultsArea").classList.remove("hidden");
-    $("phaseTitle").textContent="🔓 Resultados liberados";
-    $("countdown").textContent="A rodada de abertura já foi alcançada.";
-    $("phaseDetail").textContent="Abertura programada: 25/10/2026 às 21:30 (Brasília).";
+
+    $("resultsLock")
+      .classList.add("hidden");
+
+    $("resultsArea")
+      .classList.remove("hidden");
+
+    $("phaseTitle").textContent =
+      "🔓 Resultados liberados";
+
+    $("countdown").textContent =
+      "A rodada de abertura já foi alcançada.";
+
+    $("phaseDetail").textContent =
+      "Abertura programada: 25/10/2026 às 21:30 (Brasília).";
   }
 }
 
 async function loadRegistry(){
+
   if(!configOk()){
-    $("registryStatus").textContent="Preencha os dados do Supabase para consultar os registros.";
+
+    $("registryStatus").textContent =
+      "Configuração do Supabase ausente.";
+
     return;
   }
 
-  $("registryStatus").textContent="Consultando o servidor…";
+  $("registryStatus").textContent =
+    "Consultando o servidor…";
 
-  const {data,error}=await sb
-    .from(TABLE)
-    .select("id,nome,cipher_hash,unlock_round,created_at")
-    .order("created_at",{ascending:true});
+  const {data,error} =
+    await sb
+      .from(TABLE)
+      .select(
+        "id,nome,cipher_hash,unlock_round,created_at"
+      )
+      .order(
+        "created_at",
+        {ascending:true}
+      );
 
   if(error){
-    $("registryStatus").innerHTML=`<span class="bad">Erro: ${esc(error.message)}</span>`;
+
+    $("registryStatus").innerHTML =
+      `<span class="bad">Erro: ${esc(error.message)}</span>`;
+
     return;
   }
 
-  const body=$("registryBody");
-  body.innerHTML="";
+  const body =
+    $("registryBody");
+
+  body.innerHTML = "";
 
   for(const row of data || []){
-    const tr=document.createElement("tr");
-    tr.innerHTML=`
-      <td><strong>${esc(row.nome)}</strong></td>
-      <td>${esc(brDate(Date.parse(row.created_at)))}</td>
-      <td class="mono" title="${esc(row.cipher_hash)}">${esc(shortHash(row.cipher_hash))}</td>
-      <td><span class="tag">${Date.now()<REVEAL?"🔒 criptografado":"🔓 abertura disponível"}</span></td>`;
+
+    const tr =
+      document.createElement("tr");
+
+    tr.innerHTML =
+      `
+      <td>
+        <strong>${esc(row.nome)}</strong>
+      </td>
+
+      <td>
+        ${esc(brDate(Date.parse(row.created_at)))}
+      </td>
+
+      <td
+        class="mono"
+        title="${esc(row.cipher_hash)}"
+      >
+        ${esc(shortHash(row.cipher_hash))}
+      </td>
+
+      <td>
+        <span class="tag">
+          ${
+            Date.now()<REVEAL
+            ? "🔒 criptografado"
+            : "🔓 abertura disponível"
+          }
+        </span>
+      </td>
+      `;
+
     body.appendChild(tr);
   }
 
-  $("registryStatus").textContent=(data?.length || 0)+" registro(s) confirmado(s) no banco.";
+  $("registryStatus").textContent =
+    (data?.length || 0)
+    +
+    " registro(s) confirmado(s) no banco.";
 }
 
-$("refreshRegistry").addEventListener("click",loadRegistry);
+$("refreshRegistry")
+.addEventListener(
+  "click",
+  loadRegistry
+);
 
-$("registerBtn").addEventListener("click",async()=>{
-  const btn=$("registerBtn");
-  if(!showConfigWarning()) return;
+$("registerBtn")
+.addEventListener(
+  "click",
+  async()=>{
 
-  btn.disabled=true;
-  const old=btn.textContent;
-  btn.textContent="Criptografando…";
+    const btn =
+      $("registerBtn");
 
-  try{
-    if(Date.now()>CLOSE){
-      throw Error("O prazo exibido neste aparelho já encerrou. O banco também aplica o prazo usando o horário do servidor.");
-    }
+    if(!showConfigWarning())
+      return;
 
-    const nome=$("nome").value.trim().replace(/\s+/g," ");
-    if(nome.length<2) throw Error("Informe seu nome.");
+    btn.disabled = true;
 
-    const lula=parsePct($("lula").value);
-    const flavio=parsePct($("flavio").value);
-    if(Math.abs((lula+flavio)-100)>.001){
-      throw Error("Os votos válidos de Flávio e Lula precisam somar exatamente 100,00%.");
-    }
+    const old =
+      btn.textContent;
 
-    const id=crypto.randomUUID();
+    btn.textContent =
+      "Criptografando…";
 
-    const payload={
-      versao:"bolao-2t-tlock-v1",
-      id,
-      nome,
-      lula:fmtDot(lula),
-      flavio:fmtDot(flavio),
-      unlock_round:UNLOCK_ROUND
-    };
+    try{
 
-    const plaintext=JSON.stringify(payload);
-    const ciphertext=await timelockEncrypt(
-      UNLOCK_ROUND,
-      Buffer.from(plaintext,"utf8"),
-      drand
-    );
+      if(Date.now() > CLOSE){
 
-    const cipher_hash=await sha256(ciphertext);
+        throw Error(
+          "O prazo exibido neste aparelho já encerrou. O banco também aplica o prazo usando o horário do servidor."
+        );
+      }
 
-    btn.textContent="Gravando no servidor…";
+      const nome =
+        $("nome")
+        .value
+        .trim()
+        .replace(/\s+/g," ");
 
-    const {error:insertError}=await sb.from(TABLE).insert({
-      id,
-      nome,
-      ciphertext,
-      cipher_hash,
-      unlock_round:UNLOCK_ROUND
-    });
+      if(nome.length < 2)
+        throw Error(
+          "Informe seu nome."
+        );
 
-    if(insertError){
-      if(insertError.code==="23505") throw Error("Já existe um registro com esse nome.");
-      if(insertError.code==="42501") throw Error("O banco recusou o registro. O prazo pode ter encerrado ou o SQL de segurança não foi aplicado corretamente.");
-      throw Error(insertError.message);
-    }
+      const lula =
+        parsePct(
+          $("lula").value
+        );
 
-    btn.textContent="Confirmando gravação…";
+      const flavio =
+        parsePct(
+          $("flavio").value
+        );
 
-    const {data:confirm,error:confirmError}=await sb
-      .from(TABLE)
-      .select("id,nome,ciphertext,cipher_hash,unlock_round,created_at")
-      .eq("id",id)
-      .single();
+      if(
+        Math.abs(
+          lula+flavio-100
+        ) > .001
+      ){
 
-    if(confirmError || !confirm){
-      throw Error("O envio foi feito, mas não consegui reler o registro para confirmá-lo. Atualize a lista de registros antes de tentar novamente.");
-    }
+        throw Error(
+          "Os votos válidos de Flávio e Lula precisam somar exatamente 100,00%."
+        );
+      }
 
-    if(confirm.cipher_hash!==cipher_hash || await sha256(confirm.ciphertext)!==cipher_hash){
-      throw Error("O registro relido do servidor não corresponde ao ciphertext enviado.");
-    }
+      const id =
+        crypto.randomUUID();
 
-    encryptedBackup={
-      versao:"bolao-backup-tlock-v1",
-      id:confirm.id,
-      nome:confirm.nome,
-      created_at:confirm.created_at,
-      unlock_round:confirm.unlock_round,
-      cipher_hash:confirm.cipher_hash,
-      ciphertext:confirm.ciphertext
-    };
+      const payload = {
+        versao:"bolao-2t-tlock-v1",
+        id,
+        nome,
+        lula:fmtDot(lula),
+        flavio:fmtDot(flavio),
+        unlock_round:UNLOCK_ROUND
+      };
 
-    receiptText=
+      const plaintext =
+        JSON.stringify(payload);
+
+      const ciphertext =
+        await timelockEncrypt(
+          UNLOCK_ROUND,
+          Buffer.from(
+            plaintext,
+            "utf8"
+          ),
+          drand
+        );
+
+      const cipher_hash =
+        await sha256(
+          ciphertext
+        );
+
+      btn.textContent =
+        "Gravando no servidor…";
+
+      const {
+        error:insertError
+      } =
+        await sb
+        .from(TABLE)
+        .insert({
+          id,
+          nome,
+          ciphertext,
+          cipher_hash,
+          unlock_round:UNLOCK_ROUND
+        });
+
+      if(insertError){
+
+        if(
+          insertError.code==="23505"
+        ){
+          throw Error(
+            "Já existe um registro com esse nome."
+          );
+        }
+
+        if(
+          insertError.code==="42501"
+        ){
+          throw Error(
+            "O banco recusou o registro. O prazo pode ter encerrado ou a política de segurança não está correta."
+          );
+        }
+
+        throw Error(
+          insertError.message
+        );
+      }
+
+      btn.textContent =
+        "Confirmando gravação…";
+
+      const {
+        data:confirm,
+        error:confirmError
+      } =
+        await sb
+          .from(TABLE)
+          .select(
+            "id,nome,ciphertext,cipher_hash,unlock_round,created_at"
+          )
+          .eq(
+            "id",
+            id
+          )
+          .single();
+
+      if(
+        confirmError
+        ||
+        !confirm
+      ){
+
+        throw Error(
+          "O envio foi feito, mas não consegui reler o registro para confirmá-lo."
+        );
+      }
+
+      if(
+        confirm.cipher_hash
+          !==
+        cipher_hash
+        ||
+        await sha256(
+          confirm.ciphertext
+        )
+        !==
+        cipher_hash
+      ){
+
+        throw Error(
+          "O registro relido do servidor não corresponde ao ciphertext enviado."
+        );
+      }
+
+      encryptedBackup = {
+        versao:
+          "bolao-backup-tlock-v1",
+
+        id:
+          confirm.id,
+
+        nome:
+          confirm.nome,
+
+        created_at:
+          confirm.created_at,
+
+        unlock_round:
+          confirm.unlock_round,
+
+        cipher_hash:
+          confirm.cipher_hash,
+
+        ciphertext:
+          confirm.ciphertext
+      };
+
+      receiptText =
 `🗳️ BOLÃO — SEGUNDO TURNO
 
 Participante: ${confirm.nome}
@@ -605,200 +1022,560 @@ SHA-256 do ciphertext: ${confirm.cipher_hash}
 
 O registro pode ser conferido na lista pública do site.`;
 
-    $("rName").innerHTML=`Participante: <strong>${esc(confirm.nome)}</strong>`;
-    $("rTime").innerHTML=`Confirmado pelo servidor: <strong>${esc(brDate(Date.parse(confirm.created_at)))}</strong>`;
-    $("rId").textContent=`ID: ${confirm.id}`;
-    $("rHash").textContent=confirm.cipher_hash;
-    $("receiptCard").classList.remove("hidden");
-    $("receiptCard").scrollIntoView({behavior:"smooth"});
+      $("rName").innerHTML =
+        `Participante: <strong>${esc(confirm.nome)}</strong>`;
 
-    $("nome").disabled=true;
-    $("lula").disabled=true;
-    $("flavio").disabled=true;
-    btn.textContent="✅ Registrado e confirmado";
+      $("rTime").innerHTML =
+        `Confirmado pelo servidor: <strong>${esc(brDate(Date.parse(confirm.created_at)))}</strong>`;
 
-    await loadRegistry();
-    return;
-  }catch(e){
-    alert(e.message);
-  }finally{
-    if(btn.textContent!=="✅ Registrado e confirmado"){
-      btn.disabled=false;
-      btn.textContent=old;
+      $("rId").textContent =
+        `ID: ${confirm.id}`;
+
+      $("rHash").textContent =
+        confirm.cipher_hash;
+
+      $("receiptCard")
+        .classList
+        .remove("hidden");
+
+      $("receiptCard")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+      $("nome").disabled = true;
+      $("lula").disabled = true;
+      $("flavio").disabled = true;
+
+      btn.textContent =
+        "✅ Registrado e confirmado";
+
+      await loadRegistry();
+
+      return;
+
+    }catch(e){
+
+      alert(e.message);
+
+    }finally{
+
+      if(
+        btn.textContent
+        !==
+        "✅ Registrado e confirmado"
+      ){
+
+        btn.disabled = false;
+        btn.textContent = old;
+      }
     }
   }
-});
+);
 
-$("shareReceipt").addEventListener("click",()=>{
-  window.open("https://wa.me/?text="+encodeURIComponent(receiptText),"_blank","noopener");
-});
+$("shareReceipt")
+.addEventListener(
+  "click",
+  ()=>{
 
-$("copyReceipt").addEventListener("click",async()=>{
-  try{
-    await navigator.clipboard.writeText(receiptText);
-    alert("Recibo copiado.");
-  }catch{
-    prompt("Copie o recibo:",receiptText);
+    window.open(
+      "https://wa.me/?text="
+      +
+      encodeURIComponent(
+        receiptText
+      ),
+      "_blank",
+      "noopener"
+    );
   }
-});
+);
 
-$("downloadBackup").addEventListener("click",()=>{
-  if(!encryptedBackup) return;
-  const blob=new Blob([JSON.stringify(encryptedBackup,null,2)],{type:"application/json"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download="backup_criptografado_"+encryptedBackup.nome.replace(/[^\p{L}\p{N}_-]+/gu,"_")+".json";
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(url),500);
-});
+$("copyReceipt")
+.addEventListener(
+  "click",
+  async()=>{
 
-$("copyBackup").addEventListener("click",async()=>{
-  if(!encryptedBackup) return;
-  const text=JSON.stringify(encryptedBackup,null,2);
-  try{
-    await navigator.clipboard.writeText(text);
-    alert("Backup criptografado copiado.");
-  }catch{
-    prompt("Copie o backup criptografado:",text);
+    try{
+
+      await navigator.clipboard.writeText(
+        receiptText
+      );
+
+      alert(
+        "Recibo copiado."
+      );
+
+    }catch{
+
+      prompt(
+        "Copie o recibo:",
+        receiptText
+      );
+    }
   }
-});
+);
+
+$("downloadBackup")
+.addEventListener(
+  "click",
+  ()=>{
+
+    if(!encryptedBackup)
+      return;
+
+    const blob =
+      new Blob(
+        [
+          JSON.stringify(
+            encryptedBackup,
+            null,
+            2
+          )
+        ],
+        {
+          type:"application/json"
+        }
+      );
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+    const a =
+      document.createElement("a");
+
+    a.href =
+      url;
+
+    a.download =
+      "backup_criptografado_"
+      +
+      encryptedBackup
+        .nome
+        .replace(
+          /[^\p{L}\p{N}_-]+/gu,
+          "_"
+        )
+      +
+      ".json";
+
+    a.click();
+
+    setTimeout(
+      ()=>URL.revokeObjectURL(url),
+      500
+    );
+  }
+);
+
+$("copyBackup")
+.addEventListener(
+  "click",
+  async()=>{
+
+    if(!encryptedBackup)
+      return;
+
+    const text =
+      JSON.stringify(
+        encryptedBackup,
+        null,
+        2
+      );
+
+    try{
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+      alert(
+        "Backup criptografado copiado."
+      );
+
+    }catch{
+
+      prompt(
+        "Copie o backup criptografado:",
+        text
+      );
+    }
+  }
+);
 
 async function decryptRow(row){
-  const actualHash=await sha256(row.ciphertext);
-  if(actualHash!==row.cipher_hash){
-    throw Error("hash do ciphertext não confere");
+
+  const actualHash =
+    await sha256(
+      row.ciphertext
+    );
+
+  if(
+    actualHash
+    !==
+    row.cipher_hash
+  ){
+
+    throw Error(
+      "hash do ciphertext não confere"
+    );
   }
-  if(Number(row.unlock_round)!==UNLOCK_ROUND){
-    throw Error("rodada de abertura inesperada");
+
+  if(
+    Number(
+      row.unlock_round
+    )
+    !==
+    UNLOCK_ROUND
+  ){
+
+    throw Error(
+      "rodada de abertura inesperada"
+    );
   }
 
-  const plainBuffer=await timelockDecrypt(row.ciphertext,drand);
-  const payload=JSON.parse(plainBuffer.toString("utf8"));
+  const plainBuffer =
+    await timelockDecrypt(
+      row.ciphertext,
+      drand
+    );
 
-  if(payload.versao!=="bolao-2t-tlock-v1") throw Error("versão interna inválida");
-  if(payload.id!==row.id) throw Error("ID interno divergente");
-  if(payload.nome!==row.nome) throw Error("nome interno divergente");
-  if(Number(payload.unlock_round)!==UNLOCK_ROUND) throw Error("rodada interna divergente");
+  const payload =
+    JSON.parse(
+      plainBuffer.toString(
+        "utf8"
+      )
+    );
 
-  const lula=parsePct(payload.lula);
-  const flavio=parsePct(payload.flavio);
-  if(Math.abs((lula+flavio)-100)>.001) throw Error("votos válidos internos não somam 100");
+  if(
+    payload.versao
+    !==
+    "bolao-2t-tlock-v1"
+  ){
+    throw Error(
+      "versão interna inválida"
+    );
+  }
 
-  return {payload,lula,flavio};
+  if(
+    payload.id
+    !==
+    row.id
+  ){
+    throw Error(
+      "ID interno divergente"
+    );
+  }
+
+  if(
+    payload.nome
+    !==
+    row.nome
+  ){
+    throw Error(
+      "nome interno divergente"
+    );
+  }
+
+  if(
+    Number(
+      payload.unlock_round
+    )
+    !==
+    UNLOCK_ROUND
+  ){
+    throw Error(
+      "rodada interna divergente"
+    );
+  }
+
+  const lula =
+    parsePct(
+      payload.lula
+    );
+
+  const flavio =
+    parsePct(
+      payload.flavio
+    );
+
+  if(
+    Math.abs(
+      lula+flavio-100
+    ) > .001
+  ){
+
+    throw Error(
+      "votos válidos internos não somam 100"
+    );
+  }
+
+  return {
+    payload,
+    lula,
+    flavio
+  };
 }
 
 async function loadResults(){
-  if(decrypting) return;
-  if(Date.now()<REVEAL){
-    $("resultsStatus").textContent="A abertura ainda não chegou.";
+
+  if(decrypting)
     return;
-  }
-  if(!configOk()){
-    $("resultsStatus").innerHTML='<span class="bad">Configure o Supabase primeiro.</span>';
+
+  if(Date.now() < REVEAL){
+
+    $("resultsStatus").textContent =
+      "A abertura ainda não chegou.";
+
     return;
   }
 
-  decrypting=true;
-  $("decryptAll").disabled=true;
-  $("resultsStatus").textContent="Carregando ciphertexts…";
-  $("resultsBody").innerHTML="";
+  if(!configOk()){
+
+    $("resultsStatus").innerHTML =
+      '<span class="bad">Configure o Supabase primeiro.</span>';
+
+    return;
+  }
+
+  decrypting = true;
+
+  $("decryptAll").disabled =
+    true;
+
+  $("resultsStatus").textContent =
+    "Carregando ciphertexts…";
+
+  $("resultsBody").innerHTML =
+    "";
 
   try{
-    const {data,error}=await sb
+
+    const {
+      data,
+      error
+    } =
+      await sb
       .from(TABLE)
-      .select("id,nome,ciphertext,cipher_hash,unlock_round,created_at")
-      .order("created_at",{ascending:true});
+      .select(
+        "id,nome,ciphertext,cipher_hash,unlock_round,created_at"
+      )
+      .order(
+        "created_at",
+        {ascending:true}
+      );
 
-    if(error) throw Error(error.message);
+    if(error)
+      throw Error(
+        error.message
+      );
 
-    let okCount=0;
-    for(const row of data || []){
-      const tr=document.createElement("tr");
-      tr.innerHTML=`
-        <td><strong>${esc(row.nome)}</strong></td>
-        <td colspan="3">Descriptografando…</td>
-        <td>⏳</td>`;
-      $("resultsBody").appendChild(tr);
+    let okCount = 0;
+
+    for(
+      const row
+      of data || []
+    ){
+
+      const tr =
+        document.createElement(
+          "tr"
+        );
+
+      tr.innerHTML =
+        `
+        <td>
+          <strong>${esc(row.nome)}</strong>
+        </td>
+        <td colspan="3">
+          Descriptografando…
+        </td>
+        <td>⏳</td>
+        `;
+
+      $("resultsBody")
+        .appendChild(tr);
 
       try{
-        const r=await decryptRow(row);
-        tr.innerHTML=`
-          <td><strong>${esc(row.nome)}</strong></td>
+
+        const r =
+          await decryptRow(row);
+
+        tr.innerHTML =
+          `
+          <td>
+            <strong>${esc(row.nome)}</strong>
+          </td>
           <td>${fmt(r.lula)}%</td>
           <td>${fmt(r.flavio)}%</td>
-          <td>${fmt(Math.abs(r.lula-r.flavio))} p.p.</td>
-          <td class="good">✓ íntegro</td>`;
+          <td>
+            ${fmt(Math.abs(r.lula-r.flavio))} p.p.
+          </td>
+          <td class="good">
+            ✓ íntegro
+          </td>
+          `;
+
         okCount++;
+
       }catch(e){
-        tr.innerHTML=`
-          <td><strong>${esc(row.nome)}</strong></td>
+
+        tr.innerHTML =
+          `
+          <td>
+            <strong>${esc(row.nome)}</strong>
+          </td>
           <td colspan="3">—</td>
-          <td class="bad">✗ ${esc(e.message)}</td>`;
+          <td class="bad">
+            ✗ ${esc(e.message)}
+          </td>
+          `;
       }
     }
 
-    $("resultsStatus").textContent=`${okCount} de ${data?.length || 0} registro(s) descriptografado(s) e verificado(s). Se acabou de dar 21:30, a rodada pode levar alguns segundos para ficar disponível.`;
+    $("resultsStatus").textContent =
+      `${okCount} de ${data?.length || 0} registro(s) descriptografado(s) e verificado(s). Se acabou de dar 21:30, a rodada pode levar alguns segundos para ficar disponível.`;
+
   }catch(e){
-    $("resultsStatus").innerHTML=`<span class="bad">Erro: ${esc(e.message)}</span>`;
+
+    $("resultsStatus").innerHTML =
+      `<span class="bad">Erro: ${esc(e.message)}</span>`;
+
   }finally{
-    decrypting=false;
-    $("decryptAll").disabled=false;
+
+    decrypting = false;
+
+    $("decryptAll").disabled =
+      false;
   }
 }
-$("decryptAll").addEventListener("click",loadResults);
 
-$("openBackup").addEventListener("click",async()=>{
-  const box=$("backupResult");
-  box.classList.remove("hidden");
-  const file=$("backupFile").files?.[0];
-  if(!file){
-    box.innerHTML='<span class="bad">Selecione um arquivo de backup .json.</span>';
-    return;
-  }
+$("decryptAll")
+.addEventListener(
+  "click",
+  loadResults
+);
 
-  try{
-    const backup=JSON.parse(await file.text());
-    if(backup.versao!=="bolao-backup-tlock-v1" ||
-       !backup.id || !backup.nome || !backup.ciphertext ||
-       !backup.cipher_hash || !backup.unlock_round){
-      throw Error("backup inválido ou incompleto");
-    }
+$("openBackup")
+.addEventListener(
+  "click",
+  async()=>{
 
-    const hash=await sha256(backup.ciphertext);
-    if(hash!==backup.cipher_hash) throw Error("o hash do backup não confere");
+    const box =
+      $("backupResult");
 
-    if(Date.now()<REVEAL){
-      box.innerHTML=`<span class="good">✓ Backup íntegro.</span><br>Participante: <strong>${esc(backup.nome)}</strong><br>O conteúdo continua criptografado até a abertura.`;
+    box.classList.remove(
+      "hidden"
+    );
+
+    const file =
+      $("backupFile")
+      .files?.[0];
+
+    if(!file){
+
+      box.innerHTML =
+        '<span class="bad">Selecione um arquivo de backup .json.</span>';
+
       return;
     }
 
-    const row={
-      id:backup.id,
-      nome:backup.nome,
-      ciphertext:backup.ciphertext,
-      cipher_hash:backup.cipher_hash,
-      unlock_round:backup.unlock_round,
-      created_at:backup.created_at
-    };
-    const r=await decryptRow(row);
-    box.innerHTML=`<span class="good">✓ Backup íntegro e descriptografado.</span><br>
-      Participante: <strong>${esc(backup.nome)}</strong><br>
-      Lula: <strong>${fmt(r.lula)}%</strong><br>
-      Flávio: <strong>${fmt(r.flavio)}%</strong><br>
-      Diferença: <strong>${fmt(Math.abs(r.lula-r.flavio))} p.p.</strong>`;
-  }catch(e){
-    box.innerHTML=`<span class="bad">Erro: ${esc(e.message)}</span>`;
+    try{
+
+      const backup =
+        JSON.parse(
+          await file.text()
+        );
+
+      if(
+        backup.versao
+          !==
+        "bolao-backup-tlock-v1"
+        ||
+        !backup.id
+        ||
+        !backup.nome
+        ||
+        !backup.ciphertext
+        ||
+        !backup.cipher_hash
+        ||
+        !backup.unlock_round
+      ){
+
+        throw Error(
+          "backup inválido ou incompleto"
+        );
+      }
+
+      const hash =
+        await sha256(
+          backup.ciphertext
+        );
+
+      if(
+        hash
+        !==
+        backup.cipher_hash
+      ){
+
+        throw Error(
+          "o hash do backup não confere"
+        );
+      }
+
+      if(
+        Date.now()
+        <
+        REVEAL
+      ){
+
+        box.innerHTML =
+          `<span class="good">✓ Backup íntegro.</span><br>
+          Participante: <strong>${esc(backup.nome)}</strong><br>
+          O conteúdo continua criptografado até a abertura.`;
+
+        return;
+      }
+
+      const row = {
+        id:backup.id,
+        nome:backup.nome,
+        ciphertext:backup.ciphertext,
+        cipher_hash:backup.cipher_hash,
+        unlock_round:backup.unlock_round,
+        created_at:backup.created_at
+      };
+
+      const r =
+        await decryptRow(row);
+
+      box.innerHTML =
+        `<span class="good">✓ Backup íntegro e descriptografado.</span><br>
+        Participante: <strong>${esc(backup.nome)}</strong><br>
+        Lula: <strong>${fmt(r.lula)}%</strong><br>
+        Flávio: <strong>${fmt(r.flavio)}%</strong><br>
+        Diferença: <strong>${fmt(Math.abs(r.lula-r.flavio))} p.p.</strong>`;
+
+    }catch(e){
+
+      box.innerHTML =
+        `<span class="bad">Erro: ${esc(e.message)}</span>`;
+    }
   }
-});
+);
 
 showConfigWarning();
 updatePhase();
-setInterval(updatePhase,1000);
-loadRegistry();
-</script>
-</body>
-</html>
 
+setInterval(
+  updatePhase,
+  1000
+);
+
+loadRegistry();
+
+</script>
 </body>
 </html>
